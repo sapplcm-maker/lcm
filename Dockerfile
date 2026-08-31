@@ -1,3 +1,5 @@
+FROM python:3.10-slim
+
 WORKDIR /app
 
 # Install Python and build-essential for compiling native C++ modules
