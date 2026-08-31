@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lectors and Commentators Ministry — Online Management and Evaluation System" />
+  <title>LCM Ministry Portal</title>
+  <link rel="icon" type="image/jpeg" href="/img/lcm-logo.jpg" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Login screen -->
+  <div id="login-view" class="login-wrap hidden" role="main">
+    <div class="login-card">
+      <img src="/img/lcm-logo.jpg" alt="Lectors and Commentators Ministry logo" class="login-logo" />
+      <h1 id="login-title">LCM Ministry Portal</h1>
+      <p class="login-sub" id="login-sub">Lectors and Commentators Ministry · Inarawan, Antipolo City</p>
+      <form id="login-form" autocomplete="on">
+        <label for="login-username">Username</label>
+        <input id="login-username" name="username" type="text" required autocomplete="username" placeholder="Your username" />
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" required autocomplete="current-password" placeholder="Your passcode" />
+        <div id="login-error" class="form-error hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block" id="login-btn">Sign in</button>
+      </form>
+      <p class="login-help">Forgot your password? Contact the ministry administrator to have it reset.</p>
+      <button type="button" class="link-btn" id="forgot-btn">Request password reset</button>
+    </div>
+  </div>
+
+  <!-- App shell -->
+  <div id="app-shell" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar" aria-label="Primary">
+      <div class="brand">
+        <img src="/img/lcm-logo.jpg" alt="LCM logo" class="brand-logo" />
+        <div class="brand-text">
+          <strong>LCM Ministry</strong>
+          <span>Management Portal</span>
+        </div>
+      </div>
+      <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">&times;</button>
+      <nav id="nav-main" class="nav"></nav>
+      <nav id="nav-manage" class="nav nav-manage"></nav>
+      <div class="sidebar-footer">
+        <div class="side-user">
+          <span id="side-avatar"></span>
+          <div>
+            <strong id="side-name"></strong>
+            <span id="side-role"></span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm btn-block" id="logout-btn">Sign out</button>
+        <div id="app-version" class="version-tag"></div>
+      </div>
+    </aside>
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button class="icon-btn" id="menu-toggle" aria-label="Open menu">&#9776;</button>
+        <h2 id="page-title" class="page-title">Dashboard</h2>
+        <div class="topbar-right">
+          <a href="#/notifications" class="icon-btn notif-bell" aria-label="Notifications" id="notif-bell">
+            &#128276;<span id="notif-badge" class="badge-dot hidden"></span>
+          </a>
+          <a href="#/messages" class="icon-btn notif-bell" aria-label="Messages" id="msg-bell">
+            &#9993;<span id="msg-badge" class="badge-dot hidden"></span>
+          </a>
+          <div class="top-user" id="top-user">
+            <span id="top-avatar"></span>
+            <div class="top-user-meta">
+              <strong id="top-name"></strong>
+              <span id="top-role"></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main id="main" class="content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <!-- Modal root -->
+  <div id="modal-root"></div>
+  <!-- Toast root -->
+  <div id="toast-root" aria-live="polite"></div>
+
+  <script src="/js/api.js?v=8"></script>
+  <script src="/js/components.js?v=8"></script>
+  <script src="/js/router.js?v=8"></script>
+  <script src="/js/views-core.js?v=8"></script>
+  <script src="/js/views-schedule.js?v=8"></script>
+  <script src="/js/views-announcements.js?v=8"></script>
+  <script src="/js/views-messages.js?v=8"></script>
+  <script src="/js/views-evaluations.js?v=8"></script>
+  <script src="/js/views-admin.js?v=8"></script>
+  <script src="/js/views-reports.js?v=8"></script>
+  <script src="/js/app.js?v=8"></script>
+</body>
+</html>

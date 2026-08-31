@@ -1,0 +1,21 @@
+# Render blueprint — deploy the LCM Ministry Portal as a Web Service.
+# NOTE: Render deploys from a GitHub repository (it does not accept zip uploads).
+# Free tier has an EPHEMERAL filesystem: data written at runtime (the SQLite
+# database in server/data) is lost on restart/redeploy. To keep data across
+# restarts you MUST attach a Persistent Disk (paid add-on) at server/data.
+services:
+  - type: web
+    name: lcm-ministry-portal
+    runtime: node
+    plan: free
+    buildCommand: npm install --no-audit --no-fund
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+    # --- To keep your data across restarts, uncomment (paid add-on) ---
+    # disk:
+    #   name: lcm-data
+    #   mountPath: /opt/render/project/src/server/data
+    #   sizeGB: 1
