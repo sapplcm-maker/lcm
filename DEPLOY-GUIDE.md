@@ -98,3 +98,14 @@ Render runs full Node apps, but two things matter:
 2. **Free tier wipes runtime data on restart** (same problem as published apps elsewhere). To keep announcements/members across restarts you must add Render's **Persistent Disk** (paid add-on, ~$7–15/month).
 
 The zip includes `render.yaml` (a ready blueprint) and a `Dockerfile` — a helper can follow the README appendix to get it running. Recommended only when the ministry is ready to pay ~$10–15/month for a permanent, always-on site.
+
+---
+
+## Option E — Railway (currently in use)
+
+Railway runs the portal properly (Node, real server, the Dockerfile in this zip works). Two must-knows:
+
+1. **CRITICAL — add a Volume for your data.** Railway's file storage is wiped on every new deployment, so without a volume your announcements/members disappear on redeploys. In Railway: open your service → **Settings → Volumes → New Volume** → set the mount path to **`/app/server/data`**. The zip also includes `railway.toml` with the recommended settings.
+2. **Updates go through GitHub** — Railway builds from your connected repository (or the Dockerfile). No zip uploads there; a helper with GitHub handles updates.
+
+Billing note: Railway charges by usage (a free starter credit runs out) — unlike Replit's free tier. If cost matters, Replit free + the live link remains the zero-cost option.

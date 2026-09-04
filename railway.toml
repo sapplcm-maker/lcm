@@ -1,0 +1,10 @@
+# Railway configuration for the LCM Ministry Portal.
+# CRITICAL: Railway's filesystem is wiped on every new deployment.
+# Add a Volume so your announcements/members survive redeploys:
+#   Service -> Settings -> Volumes -> New Volume -> mount path: /app/server/data
+[deploy]
+  healthcheckPath = "/api/health"
+
+[volumes]
+  [volumes.lcm-data]
+    mountPath = "/app/server/data"

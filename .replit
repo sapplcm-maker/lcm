@@ -1,0 +1,4 @@
+# Replit configuration — lets the portal run on Replit.com with one click.
+language = "nodejs"
+run = "node server/server.js"
+entrypoint = "server/server.js"
