@@ -1,3 +1,7 @@
+git add Dockerfile
+git commit -m "fix: install build tools for better-sqlite3"
+git push
+
 # ==========================================
 # Stage 1: Build & Compile Native Dependencies
 # ==========================================
