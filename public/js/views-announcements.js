@@ -170,6 +170,7 @@ async function openAnnouncementEditor(a, onDone) {
     } catch (e) { errBox.textContent = e.message; errBox.classList.remove('hidden'); }
   }
 
+  const isNewOrDraft = !current || current.status === 'draft';
   const modal = openModal({
     title: current ? 'Edit Announcement' : 'New Announcement',
     wide: true,
@@ -185,11 +186,12 @@ async function openAnnouncementEditor(a, onDone) {
         <div class="field"><label>Publish date</label><input id="an-pub" type="date" value="${esc(current?.publish_at || '')}" /></div>
         <div class="field"><label>Expiration date (optional)</label><input id="an-exp" type="date" value="${esc(current?.expires_at || '')}" /></div>
         <div class="field full"><label>Photos &amp; files</label><div id="an-attach"></div></div>
+        ${isNewOrDraft && canPublish ? `<div class="field full"><span class="hint" style="font-size:12px;color:var(--orange)">⚠️ Members see announcements only after you press <b>Publish now</b>. “Save draft” keeps it hidden until then.</span></div>` : ''}
       </div>`,
     actions: [
       { key: 'cancel', label: 'Cancel', cls: 'btn-ghost' },
-      ...(canPublish && (!current || current.status === 'draft') ? [{ key: 'pub', label: 'Publish now', cls: 'btn-teal' }] : []),
-      { key: 'save', label: current ? 'Save changes' : 'Save draft', cls: 'btn-primary' },
+      ...(isNewOrDraft && canPublish ? [{ key: 'pub', label: 'Publish now', cls: 'btn-primary' }] : []),
+      { key: 'save', label: current && current.status === 'published' ? 'Save changes' : 'Save draft', cls: isNewOrDraft && canPublish ? 'btn-ghost' : 'btn-primary' },
     ],
   });
 

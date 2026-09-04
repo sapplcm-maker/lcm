@@ -61,6 +61,19 @@ function loadSession(req, res, next) {
     `SELECT p.code FROM role_permissions rp JOIN permissions p ON p.id = rp.permission_id WHERE rp.role_id = ?`
   ).all(user.role_id).map((x) => x.code);
 
+  // Being placed on an active evaluation committee grants evaluation rights
+  // automatically — the account's role does not need to be "Committee Member".
+  const activeCommittee = db.prepare(
+    `SELECT COUNT(*) c FROM committee_members cm
+     JOIN committees c ON c.id = cm.committee_id
+     WHERE cm.user_id = ? AND cm.is_active = 1 AND c.is_active = 1`
+  ).get(user.id).c;
+  if (activeCommittee > 0) {
+    for (const code of ['evaluations.view', 'evaluations.evaluate', 'reports.view']) {
+      if (!user.perms.includes(code)) user.perms.push(code);
+    }
+  }
+
   req.session = { sid, csrf_token: row.csrf_token, created_ms: createdMs };
   req.user = user;
   next();

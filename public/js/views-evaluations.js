@@ -248,7 +248,7 @@ Router.register('committee-eval', {
         const s = state[c.committee.id];
         const payload = {
           committee_id: c.committee.id,
-          member_id,
+          member_id: memberId,
           term_id: term.id,
           ratings: Object.entries(s.ratings).map(([catId, rating]) => ({ category_id: +catId, rating })),
           comments: s.comments.map((x) => ({ comment_type: x.comment_type, body: x.body, visible: !!x.visible })),

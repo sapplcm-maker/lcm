@@ -1,7 +1,7 @@
 /* Application bootstrap — session, navigation, shell. */
 'use strict';
 
-window.APP_VERSION = 'v8';;;;;;
+window.APP_VERSION = 'v10';;;;;;;
 
 const App = {
   user: null,
