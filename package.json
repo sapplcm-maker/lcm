@@ -2,13 +2,13 @@
   "name": "lcm-omes",
   "version": "1.0.0",
   "description": "Lectors and Commentators Ministry Online Management and Evaluation System",
-  "main": "server/server.js",
+  "main": "server.js",
+ {
+  "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "seed": "node server/seed.js",
-    "backup": "node server/backup.js",
-    "reset-db": "node server/seed.js --fresh"
-  },
+    "start": "node src/app.js"
+  }
+},
   "engines": {
     "node": ">=20"
   },
