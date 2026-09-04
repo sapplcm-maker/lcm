@@ -1,9 +1,8 @@
-# Stage 1: Build & Compile Native Dependencies
+# Stage 1: Builder
 FROM docker.io/library/node:20-slim AS builder
 
 WORKDIR /app
 
-# Install build tools required for node-gyp (better-sqlite3)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     make \
@@ -12,9 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY package*.json ./
 
-RUN npm ci --omit=dev --no-audit --no-fund
+# Changed 'npm ci' to 'npm install'
+RUN npm install --omit=dev --no-audit --no-fund
 
-# Stage 2: Final Production Runner Image
+# Stage 2: Runner
 FROM docker.io/library/node:20-slim AS runner
 
 WORKDIR /app
